@@ -2,6 +2,8 @@ import axios from "axios";
 import { Exo } from "../../models/exercise/exercise";
 import { IExerciseRepository } from "./exerciserepository";
 import * as dotenv from 'dotenv';
+import { ParsedUrlQuery } from 'querystring';
+
 
 dotenv.config();
 
@@ -21,4 +23,13 @@ export class InMemoryExerciseRepository implements IExerciseRepository {
 
         return response.data;
     }   
+
+    async getSpecificExercise(queryParam?: ParsedUrlQuery): Promise<Exo> {
+        const response = await axios.get(this.BASEURL, {
+            headers: {'X-Api-Key':this.apiKey},
+            params: queryParam ,
+        });
+        
+        return response.data;
+    }
 }

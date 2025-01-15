@@ -6,14 +6,14 @@ import { InMemoryExerciseRepository } from "../repositories/exercise/inmemoryexe
 const router = new Router();
 const service = new ExerciseService(new InMemoryExerciseRepository)
 
-router.get('/exo', async (ctx) => {
-    const exo = await service.getExercise();
 
-    if (exo) {
+router.get('/exo', async (ctx) => {
+    let  queryParam = ctx.query;
+
+    if (queryParam) {
+        const exo = await service.getSpecificExercise(queryParam);
         ctx.status = 200;
         ctx.body = exo;
-    }else {
-        ctx.throw(404)
     }
 
 });

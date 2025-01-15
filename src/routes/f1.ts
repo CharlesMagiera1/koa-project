@@ -27,7 +27,7 @@ router.get('/f1/:year', async (ctx) => {
     }else {
         ctx.throw(404);
     }
-})
+});
 
 router.get('/f1/:year/circuits', async (ctx) => {
     const f1 = await service.getF1YearCircuits(Number(ctx.params.year));
@@ -38,7 +38,7 @@ router.get('/f1/:year/circuits', async (ctx) => {
     }else {
         ctx.throw(404);
     }
-})
+});
 
 router.get('/f1/:year/:season', async (ctx) => {
     const f1 = await service.getF1Season(Number(ctx.params.year), Number(ctx.params.season));

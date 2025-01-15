@@ -1,5 +1,6 @@
 import { Exo } from "../models/exercise/exercise";
 import { IExerciseRepository } from "../repositories/exercise/exerciserepository";
+import { ParsedUrlQuery } from 'querystring';
 
 
 
@@ -11,6 +12,11 @@ export class ExerciseService {
     }
 
     async getExercise(): Promise<Exo> {
-        return this.exerciseRepo.getExercise();
+        return await this.exerciseRepo.getExercise();
+    }
+
+    async getSpecificExercise(queryParam?: ParsedUrlQuery): Promise<Exo> {
+
+        return await this.exerciseRepo.getSpecificExercise(queryParam);
     }
 };
